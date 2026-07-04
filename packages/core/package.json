@@ -1,0 +1,47 @@
+{
+  "name": "@ously/core",
+  "version": "0.1.0",
+  "description": "Core financial planning math: time-value-of-money, wealth projection, and more.",
+  "type": "module",
+  "license": "MIT",
+  "sideEffects": false,
+  "engines": {
+    "node": ">=18"
+  },
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE"
+  ],
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    }
+  },
+  "scripts": {
+    "build": "tsup",
+    "dev": "tsup --watch",
+    "test": "vitest run --passWithNoTests",
+    "test:watch": "vitest --passWithNoTests",
+    "typecheck": "tsc --noEmit",
+    "prepublishOnly": "npm run build && npm test && npm run typecheck"
+  },
+  "dependencies": {
+    "decimal.js": "^10.6.0"
+  },
+  "keywords": [
+    "finance",
+    "financial-planning",
+    "tvm",
+    "wealth",
+    "retirement",
+    "time-value-of-money"
+  ],
+  "publishConfig": {
+    "access": "public"
+  }
+}

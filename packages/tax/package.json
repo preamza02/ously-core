@@ -1,0 +1,44 @@
+{
+  "name": "@ously/tax",
+  "version": "0.1.0",
+  "description": "Tax calculations for financial planning, built on @ously/core.",
+  "type": "module",
+  "license": "MIT",
+  "sideEffects": false,
+  "engines": {
+    "node": ">=18"
+  },
+  "files": [
+    "dist",
+    "README.md"
+  ],
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    }
+  },
+  "scripts": {
+    "build": "tsup",
+    "dev": "tsup --watch",
+    "test": "vitest run --passWithNoTests",
+    "test:watch": "vitest --passWithNoTests",
+    "typecheck": "tsc --noEmit",
+    "prepublishOnly": "npm run build && npm test && npm run typecheck"
+  },
+  "dependencies": {
+    "@ously/core": "workspace:*",
+    "decimal.js": "^10.6.0"
+  },
+  "keywords": [
+    "finance",
+    "tax",
+    "financial-planning"
+  ],
+  "publishConfig": {
+    "access": "public"
+  }
+}

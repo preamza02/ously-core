@@ -1,0 +1,41 @@
+{
+  "name": "@ously/workspace-root",
+  "private": true,
+  "version": "0.0.0",
+  "description": "Ously financial planning monorepo",
+  "type": "module",
+  "packageManager": "pnpm@11.9.0",
+  "engines": {
+    "node": ">=18"
+  },
+  "scripts": {
+    "new": "node scripts/new-package.mjs",
+    "build": "pnpm --filter @ously/core build && pnpm -r --filter '!@ously/core' build",
+    "build:core": "pnpm --filter @ously/core build",
+    "build:tax": "pnpm --filter @ously/tax build",
+    "build:all": "pnpm -r --parallel build",
+    "test": "pnpm build:core && pnpm -r test",
+    "test:core": "pnpm --filter @ously/core test",
+    "test:tax": "pnpm build:core && pnpm --filter @ously/tax test",
+    "typecheck": "pnpm build:core && pnpm -r typecheck",
+    "typecheck:core": "pnpm --filter @ously/core typecheck",
+    "typecheck:tax": "pnpm build:core && pnpm --filter @ously/tax typecheck",
+    "dev:core": "pnpm --filter @ously/core dev",
+    "dev:tax": "pnpm --filter @ously/tax dev",
+    "lint": "biome lint",
+    "format": "biome format --write",
+    "check": "biome check",
+    "fix": "biome check --write",
+    "clean": "pnpm -r exec rm -rf dist",
+    "clean:core": "rm -rf packages/core/dist",
+    "clean:tax": "rm -rf packages/tax/dist",
+    "verify": "pnpm clean && pnpm build && pnpm test && pnpm typecheck && pnpm check"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "2.5.2",
+    "@types/node": "^26.1.0",
+    "tsup": "^8.5.1",
+    "typescript": "^6.0.3",
+    "vitest": "^4.1.9"
+  }
+}
